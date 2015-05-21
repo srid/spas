@@ -2,7 +2,7 @@
 
 module Main where
 
-import Paths_spa (version)
+import Paths_spas (version)
 
 import PostgREST.App
 import PostgREST.Middleware

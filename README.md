@@ -1,6 +1,8 @@
-# spa
+# spas
 
-`spa` is a single-page application server for drop-in use. It provides an auto-generated REST API for the PostgreSQL data using PostgREST.
+`spas` is a single-page application server for drop-in use. It provides an auto-generated REST API for the PostgreSQL data using PostgREST.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/SPAS-12_stock_folded.jpg/450px-SPAS-12_stock_folded.jpg)
 
 ## Basic idea
 
@@ -13,4 +15,3 @@ And then release it as a Haskell executable for direct use without having to com
 ## Background
 
 Mailing discussion: https://groups.google.com/forum/#!topic/elm-discuss/6kyabQgUMJk
-
