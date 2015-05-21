@@ -1,6 +1,6 @@
 module Main where
 
-import Paths_postgrest (version)
+import Paths_spa (version)
 
 import PostgREST.App
 import PostgREST.Middleware

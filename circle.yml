@@ -9,7 +9,6 @@ dependencies:
     - cabal install .cabal-sandbox/src/*
     - cabal install --dependencies-only --avoid-reinstalls
 
-# Compile pages during the test stage
 test:
   post:
     - echo true
