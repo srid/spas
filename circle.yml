@@ -5,7 +5,8 @@
 dependencies:
   override:
     - cabal update
-    - mkdir .cabal-sandbox/src && cd .cabal-sandbox/src && wget -c https://github.com/begriffs/postgrest/archive/v0.2.9.0.tar.gz && cabal install p*
+    - mkdir -p .cabal-sandbox/src && cd .cabal-sandbox/src && wget -c https://github.com/begriffs/postgrest/archive/v0.2.9.0.tar.gz
+    - cabal install .cabal-sandbox/src/*
     - cabal install --dependencies-only --avoid-reinstalls
 
 # Compile pages during the test stage
