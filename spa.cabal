@@ -21,7 +21,7 @@ executable spa
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.6 && <4.8
-                     , postgrest >= 0.2.9.0
+                     , postgrest >= 0.2.9.1
                      , transformers
                      , string-conversions
                      , warp >= 3.0.2, wai >= 3.0.1
