@@ -5,9 +5,10 @@
 dependencies:
   override:
     - cabal update
+    - wget https://github.com/begriffs/postgrest/archive/v0.2.9.0.tar.gz -O p.tgz && cabal install p.tgz && rm p.tgz
     - cabal install --dependencies-only --avoid-reinstalls
 
 # Compile pages during the test stage
 test:
   post:
-    - cabal build
+    - echo true
