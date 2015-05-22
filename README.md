@@ -12,6 +12,17 @@
 
 And then release it as a Haskell executable for direct use without having to compile it on the user side (or CI, deployment side).
 
+## Getting started
+
+```
+$ export SPAS_USERNAME=myname
+$ export SPAS_PASSWORD=mypassword
+$ export PORT=4000
+$ spas
+...
+```
+
+
 ## Background
 
 Mailing discussion: https://groups.google.com/forum/#!topic/elm-discuss/6kyabQgUMJk
