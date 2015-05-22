@@ -35,32 +35,33 @@ checkCredsEnv username password user pass =
 
 main :: IO ()
 main = do
-  let opts = info (helper <*> argParser) $
-                fullDesc
-                <> progDesc (
-                    "spas "
-                    <> prettyVersion
-                    <> " / create a REST API to an existing Postgres database"
-                )
-      parserPrefs = prefs showHelpOnError
-  conf <- customExecParser parserPrefs opts
+  username   <- getEnv "SPAS_USERNAME"
+  password   <- getEnv "SPAS_PASSWORD"
+  dbUri      <- getEnv "DATABASE_URL"
   portString <- getEnv "PORT"
-  username <- getEnv "SPAS_USERNAME"
-  password <- getEnv "SPAS_PASSWORD"
   let port = read portString :: Int
+
+  -- Build AppConfig type expected by the internals of PostgREST library
+  let conf = AppConfig { configDbName=""
+             , configDbPort=0
+             , configDbUser=""
+             , configDbPass=""
+             , configDbHost=""
+             , configPort=0
+             , configAnonRole="TODO"
+             , configSecure=False -- TODO
+             , configPool=10
+             , configV1Schema="public"
+             , configJwtSecret=""
+             }
 
   unless (configSecure conf) $
     putStrLn "WARNING, running in insecure mode, auth will be in plaintext"
   unless ("secret" /= configJwtSecret conf) $
     putStrLn "WARNING, running in insecure mode, JWT secret is the default value"
-  Prelude.putStrLn $ "Listening on port " ++
-    (show $ configPort conf :: String)
+  Prelude.putStrLn $ "Listening on port " ++ (show port)
 
-  let pgSettings = P.ParamSettings (cs $ configDbHost conf)
-                     (fromIntegral $ configDbPort conf)
-                     (cs $ configDbUser conf)
-                     (cs $ configDbPass conf)
-                     (cs $ configDbName conf)
+  let pgSettings = P.StringSettings (cs $ dbUri)
       appSettings = setPort port
                   . setServerName (cs $ "postgrest/" <> prettyVersion)
                   $ defaultSettings

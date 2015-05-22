@@ -21,8 +21,8 @@ run:	${EXE}
 
 run-legacy:	${EXE}
 	PORT=${PORT} SPAS_USERNAME=${SPAS_USERNAME} SPAS_PASSWORD=${SPAS_PASSWORD} \
-		${EXE} -p ${PORT} -d srid -U srid --db-pass password \
-	 	--db-host localhost -a srid --v1schema public
+	DATABASE_URL=postgres://srid:password@localhost:5432/srid \
+		${EXE} -p ${PORT} -a srid --v1schema public
 
 clean:
 	cabal sandbox delete
