@@ -30,7 +30,7 @@ main = do
   let opts = info (helper <*> argParser) $
                 fullDesc
                 <> progDesc (
-                    "PostgREST "
+                    "spas "
                     <> prettyVersion
                     <> " / create a REST API to an existing Postgres database"
                 )
