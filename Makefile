@@ -20,7 +20,8 @@ run:	${EXE}
 		${EXE}
 
 run-legacy:	${EXE}
-	SPAS_USERNAME=${SPAS_USERNAME} SPAS_PASSWORD=${SPAS_PASSWORD} ${EXE} -p ${PORT} -d srid -U srid --db-pass password \
+	PORT=${PORT} SPAS_USERNAME=${SPAS_USERNAME} SPAS_PASSWORD=${SPAS_PASSWORD} \
+		${EXE} -p ${PORT} -d srid -U srid --db-pass password \
 	 	--db-host localhost -a srid --v1schema public
 
 clean:

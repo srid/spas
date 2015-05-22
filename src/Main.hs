@@ -44,9 +44,10 @@ main = do
                 )
       parserPrefs = prefs showHelpOnError
   conf <- customExecParser parserPrefs opts
-  let port = configPort conf
+  portString <- getEnv "PORT"
   username <- getEnv "SPAS_USERNAME"
   password <- getEnv "SPAS_PASSWORD"
+  let port = read portString :: Int
 
   unless (configSecure conf) $
     putStrLn "WARNING, running in insecure mode, auth will be in plaintext"
