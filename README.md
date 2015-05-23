@@ -20,6 +20,7 @@ $ cd /path/to/static/files && spas
 ...
 ```
 
+See https://github.com/srid/chronicle for an Elm application that uses spas.
 
 ## Background
 
