@@ -14,6 +14,7 @@ ${EXE}:	cabal.sandbox.config src/*.hs
 
 run:	${EXE}
 	PORT=${PORT} SPAS_USERNAME=${SPAS_USERNAME} SPAS_PASSWORD=${SPAS_PASSWORD} \
+	SPAS_V1SCHEMA=public \
 	DATABASE_URL=postgres://srid:password@localhost:5432/srid \
 		${EXE} -p ${PORT} -a srid --v1schema public
 

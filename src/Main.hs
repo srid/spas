@@ -37,6 +37,7 @@ main :: IO ()
 main = do
   username   <- getEnv "SPAS_USERNAME"
   password   <- getEnv "SPAS_PASSWORD"
+  v1schema   <- getEnv "SPAS_V1SCHEMA"
   dbUri      <- getEnv "DATABASE_URL"
   portString <- getEnv "PORT"
   let port = read portString :: Int
@@ -51,7 +52,7 @@ main = do
              , configAnonRole="TODO"
              , configSecure=False -- TODO
              , configPool=10
-             , configV1Schema="public"
+             , configV1Schema=v1schema
              , configJwtSecret=""
              }
 
