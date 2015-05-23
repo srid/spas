@@ -18,7 +18,7 @@ import Network.Wai (strictRequestBody)
 import Network.Wai.Middleware.Cors (cors)
 import Network.Wai.Handler.Warp hiding (Connection)
 import Network.Wai.Middleware.Gzip (gzip, def)
-import Network.Wai.Middleware.Static (staticPolicy, only)
+import Network.Wai.Middleware.Static (static)
 import Network.Wai.Middleware.RequestLogger (logStdout)
 import Network.Wai.Middleware.HttpAuth (basicAuth)
 import Data.List (intercalate)
@@ -27,7 +27,7 @@ import qualified Hasql as H
 import qualified Hasql.Postgres as P
 import Options.Applicative hiding (columns)
 
-import PostgREST.Config (AppConfig(..), argParser, corsPolicy)
+import PostgREST.Config (AppConfig(..), corsPolicy)
 
 checkCredsEnv :: String -> String -> ByteString -> ByteString -> Bool
 checkCredsEnv username password user pass =
@@ -69,7 +69,7 @@ main = do
         . (if configSecure conf then redirectInsecure else id)
         . basicAuth (\u p -> return $ (checkCredsEnv username password) u p) "Postgrest realm"
         . gzip def . cors corsPolicy
-        . staticPolicy (only [("favicon.ico", "static/favicon.ico")])
+        . static
 
   poolSettings <- maybe (fail "Improper session settings") return $
                 H.poolSettings (fromIntegral $ configPool conf) 30
