@@ -15,6 +15,7 @@
 ```
 $ export SPAS_USERNAME=myname
 $ export SPAS_PASSWORD=mypassword
+$ export DATABASE_URL=postgres://...  # also provided by Heroku
 $ export PORT=4000
 $ cd /path/to/static/files && spas
 ...
