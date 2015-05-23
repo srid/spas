@@ -1,6 +1,6 @@
 # spas
 
-`spas` is a single-page application server for drop-in use. It provides an auto-generated REST API for the PostgreSQL data using PostgREST.
+`spas` is a server sitting in between your SPA (single-page application) and PostgreSQL database. It provides an auto-generated REST API for the PostgreSQL data using PostgREST.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/SPAS-12_stock_folded.jpg/450px-SPAS-12_stock_folded.jpg)
 
@@ -8,9 +8,7 @@
 
 * Create a thin server wrapping [PostgREST](https://github.com/begriffs/postgrest) with these additional features:
 * Static file serving
-* Authentication without basic auth
-
-And then release it as a Haskell executable for direct use without having to compile it on the user side (or CI, deployment side).
+* Authentication (using basic auth for now)
 
 ## Getting started
 
@@ -18,7 +16,7 @@ And then release it as a Haskell executable for direct use without having to com
 $ export SPAS_USERNAME=myname
 $ export SPAS_PASSWORD=mypassword
 $ export PORT=4000
-$ spas
+$ cd /path/to/static/files && spas
 ...
 ```
 
