@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                spas
-version:             0.1.0.0
+version:             0.1.1.0
 synopsis:            Single-page application server, using PostgREST and more
 -- description:
 homepage:            https://github.com/srid/spas
@@ -27,7 +27,7 @@ executable spas
                      , bytestring
                      , warp >= 3.0.2, wai >= 3.0.1
                      , wai-extra, wai-cors
-                     , wai-middleware-static >= 0.6.0
+                     , wai-middleware-static >= 0.7.0
                      , hasql == 0.7.3.1, hasql-backend == 0.4.1
                      , hasql-postgres == 0.10.3.1
                      , optparse-applicative == 0.11.*
