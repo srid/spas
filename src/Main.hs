@@ -18,7 +18,7 @@ import Network.Wai (strictRequestBody)
 import Network.Wai.Middleware.Cors (cors)
 import Network.Wai.Handler.Warp hiding (Connection)
 import Network.Wai.Middleware.Gzip (gzip, def)
-import Network.Wai.Middleware.Static (static)
+import Network.Wai.Middleware.Static as Static
 import Network.Wai.Middleware.RequestLogger (logStdout)
 import Network.Wai.Middleware.HttpAuth (basicAuth)
 import Data.List (intercalate)
@@ -62,6 +62,7 @@ main = do
     putStrLn "WARNING, running in insecure mode, JWT secret is the default value"
   Prelude.putStrLn $ "Listening on port " ++ (show port)
 
+  staticCache <- Static.initCaching Static.PublicStaticCaching
   let pgSettings = P.StringSettings (cs $ dbUri)
       appSettings = setPort port
                   . setServerName (cs $ "postgrest/" <> prettyVersion)
@@ -70,7 +71,7 @@ main = do
         . (if configSecure conf then redirectInsecure else id)
         . basicAuth (\u p -> return $ (checkCredsEnv username password) u p) "Postgrest realm"
         . gzip def . cors corsPolicy
-        . static
+        . Static.static' staticCache
 
   poolSettings <- maybe (fail "Improper session settings") return $
                 H.poolSettings (fromIntegral $ configPool conf) 30
