@@ -86,4 +86,3 @@ main = do
 
   where
     prettyVersion = intercalate "." $ map show $ versionBranch version
--
