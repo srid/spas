@@ -65,11 +65,11 @@ main = do
   staticCache <- Static.initCaching Static.PublicStaticCaching
   let pgSettings = P.StringSettings (cs $ dbUri)
       appSettings = setPort port
-                  . setServerName (cs $ "postgrest/" <> prettyVersion)
+                  . setServerName (cs $ "spas/" <> prettyVersion)
                   $ defaultSettings
       middle = logStdout
         . (if configSecure conf then redirectInsecure else id)
-        . basicAuth (\u p -> return $ (checkCredsEnv username password) u p) "Postgrest realm"
+        . basicAuth (\u p -> return $ (checkCredsEnv username password) u p) "Spas realm"
         . gzip def . cors corsPolicy
         . Static.static' staticCache
 
@@ -86,3 +86,4 @@ main = do
 
   where
     prettyVersion = intercalate "." $ map show $ versionBranch version
+-

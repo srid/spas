@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.1.1] - 2015-06-20
+### Fixed
+- Actually use HTTP caching in static middleware
+- Change "Server" header to mention spas
+
 ## [0.1.1.0] - 2015-06-20
 ### Added
 - HTTP caching support for static files
